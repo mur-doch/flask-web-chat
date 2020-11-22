@@ -9,8 +9,6 @@ default_rooms = ['room1', 'room2', 'room3']
 @socketio.on('send message', namespace='/test')
 def send_message_handler(message):
     if current_user.is_authenticated:
-        # TODO: Should be some kind of error-checking in case this room
-        # does not exist.
         room_obj = Room.query.filter_by(id=current_user.current_room).first()
         emit('server message', {'data': current_user.username + ': ' + message['data']}, room=room_obj.name)
 
