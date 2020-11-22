@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<title>Web Chat</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+		<script src="{{ url_for('static', filename='jquery-3.5.1.min.js') }}"></script>
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+	</head>
+	<body>
+		<div>
+			<a href="{{ url_for('index') }}">Home</a>
+			{% if current_user.is_anonymous %}
+			<a href="{{ url_for('login') }}">Login</a>
+			{% else %}
+			<a href="{{ url_for('logout') }}">Logout</a>
+			{% endif %}
+		</div>
+		{% with messages = get_flashed_messages() %}
+		{% if messages %}
+		<ul>
+		{% for message in messages %}
+		<li>{{ message }}</li>
+		{% endfor %}
+		</ul>
+		{% endif %}
+		{% endwith %}
+
+		{% block content %}
+		{% endblock %}
+	</body>
+</html>

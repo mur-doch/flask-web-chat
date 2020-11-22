@@ -1,0 +1,7 @@
+#message_log {
+	height: 200px;
+	width: 50%;
+	min-width: 400px;
+	outline-style: solid;
+	overflow: scroll;
+}

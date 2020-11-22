@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>Web Chat</h1>
+	<h3>Welcome, {{ current_user.username }}.</h3>
+	
+	<select name="rooms" id="rooms">
+		<option value="room1">Room 1</option>
+		<option value="room2">Room 2</option>
+		<option value="room3">Room 3</option>
+	</select>
+	
+	<form id="create_room_form">
+		<label for="create_room_name">Create your own room:</label>
+		<input type="text" id="create_room_name" name="create_room_name">
+		<input type="password" id="create_room_password" name="create_room_password">
+		<input type="submit" id="create_room_button" value="Create">
+	</form>
+	
+	<form id="join_room_form">
+		<label for="join_room_name">Join another room:</label>
+		<input type="text" id="join_room_name" name="join_room_name">
+		<input type="password" id="join_room_password" name="join_room_password">
+		<input type="submit" id="join_room_button" value="Join">
+	</form>
+
+	<a id="connect_link" href="#connect" style="display: none;">Connect</a>
+	<a id="disconnect_link" href="#disconnect">Disconnect</a>
+	
+	<div id="message_log">
+	</div>
+	<br>
+	<form id="send_message_form" method="POST" action='#'>
+		<input type="text" name="message_text" id="message_text" placeholder="Message">
+		<input type="submit" value="Send">
+	</form>
+
+	<script src="{{ url_for('static', filename='chat.js') }}"></script>
+{% endblock %}
